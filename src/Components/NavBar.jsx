@@ -1,14 +1,21 @@
 import React from "react";
 import NavbarSearchButtonIcon from "./NavbarSearchButtonIcon";
 
-export default function NavBar() {
+export default function NavBar({setsearchTerm, setToggle, toggle}) {
+  
+  function handleSubmit(event){
+      event.preventDefault()
+      setToggle(!toggle)
+  }
+
   return (
     <div>
       <nav class="bg-black text-white">
         <div class="container mx-auto flex justify-between items-center py-4">
-          <h1 class="text-red-500 font-bold text-2xl">CineSpot</h1>
-          <form class="flex items-center">
+          <h1 class="text-red-500 font-bold text-3xl">MovieMania</h1>
+          <form class="flex items-center" onSubmit={handleSubmit}>
             <input
+            onChange={(event)=>setsearchTerm(event.target.value)}
               class="px-4 py-1 rounded-l-full w-full focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-900 text-white"
               type="text"
               placeholder="Search..."

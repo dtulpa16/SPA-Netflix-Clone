@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import MovieCard from "./MovieCard";
 
-export default function MovieList() {
+export default function MovieList({ movies }) {
   return (
-    <div>MovieList</div>
-  )
+    <div className="flex flex-wrap gap-8">
+      {movies.map((el) => (
+        <MovieCard singleMovie={el} />
+      ))}
+    </div>
+  );
 }
