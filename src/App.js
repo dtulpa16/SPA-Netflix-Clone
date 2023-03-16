@@ -1,11 +1,13 @@
 
 import './App.css';
 import NavBar from './Components/NavBar';
+import MoviePage from './Pages/MoviePage';
 
 function App() {
   return (
-    <div className="App">
+    <div className="bg-[#141414] h-screen">
       <NavBar/>
+      <MoviePage/>
     </div>
   );
 }
