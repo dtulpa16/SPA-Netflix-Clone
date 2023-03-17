@@ -8,7 +8,7 @@ function App() {
   const [toggle,setToggle] = useState(false)
  
   return (
-    <div className="bg-[#141414] h-screen text-white">
+    <div className="bg-[#141414] h-full text-white">
       <NavBar setsearchTerm={setsearchTerm} setToggle={setToggle} toggle={toggle}/>
       <MoviePage searchTerm={searchTerm} toggle={toggle}/>
     </div>
