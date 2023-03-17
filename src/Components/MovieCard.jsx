@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useState } from "react";
 
-export default function MovieCard({singleMovie}) {
+export default function MovieCard({ singleMovie }) {
+  const [hoverToggle, setHoverToggle] = useState(false);
   return (
-    <div>
-      <img src={singleMovie?.image?.url} width="200" height="150"/>
-      <h3 className="text-left max-w-[200px] max-h-[20px] overflow-hidden">{singleMovie.title}</h3> 
+    <div
+      onMouseEnter={() => setHoverToggle(true)}
+      onMouseLeave={() => setHoverToggle(false)}
+      class={`trasition duration-200 ease-in-out hover:scale-105 min-h-[280px] bg-black `}
+    >
+      <img
+        src={singleMovie?.image?.url}
+        width="250"
+        className={`h-[350px] ${hoverToggle ? "opacity-50" : ""}`}
+      />
+      {hoverToggle === true ? (
+        <h3 class="text-white fixed pl-2 text-md bottom-0 font-bold">
+          {singleMovie.title}
+        </h3>
+      ) : null}
     </div>
-  )
+  );
 }
