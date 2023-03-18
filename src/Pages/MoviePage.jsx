@@ -2,6 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import MovieList from "../Components/MovieList";
 import { TypeContext } from "../Components/TypeContext";
+/**
+ * Renders the main movie or TV show page.
+ * @param {Object} props - Component props
+ * @param {string} props.searchTerm - Search term for the movie or TV show
+ * @param {boolean} props.toggle - Boolean value indicating whether to toggle between movie and TV show
+ * @returns {JSX.Element} - Rendered MoviePage component
+ */
 export default function MoviePage({ searchTerm, toggle }) {
   const { active} = useContext(TypeContext);
   const [movies, setmovies] = useState([]);

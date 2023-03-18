@@ -3,6 +3,10 @@ import "./App.css";
 import NavBar from "./Components/NavBar";
 import MoviePage from "./Pages/MoviePage";
 import { TypeContext } from "./Components/TypeContext";
+/**
+ * The main component of the application that renders the navbar and movie page.
+ * @component
+ */
 function App() {
   const [searchTerm, setsearchTerm] = useState();
   const [toggle, setToggle] = useState(false);

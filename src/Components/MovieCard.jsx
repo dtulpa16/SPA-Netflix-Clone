@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-
+/**
+ * Renders a single movie or TV show card.
+ * @param {Object} props - Component props
+ * @param {Object} props.singleMovie - Single movie or TV show object
+ * @returns {JSX.Element} - Rendered MovieCard component
+ */
 export default function MovieCard({ singleMovie }) {
   const [hoverToggle, setHoverToggle] = useState(false);
    return singleMovie.image?.url ? (

@@ -1,12 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import NavbarSearchButtonIcon from "./NavbarSearchButtonIcon";
 import { TypeContext } from "./TypeContext";
-
+/**
+ * A functional component that renders the application navbar.
+ * @component
+ * @param {function} setsearchTerm - A function to handle search input changes.
+ * @param {function} setToggle - A function to cause the useEffect in Movie Page to re-run and fetch media based off of search term.
+ */
 export default function NavBar({ setsearchTerm, setToggle, toggle }) {
-  const {active,setActive} = useContext(TypeContext)
+  const { active, setActive } = useContext(TypeContext);
+  const form = useRef(null);
   function handleSubmit(event) {
     event.preventDefault();
     setToggle(!toggle);
+    form.current.value = "";
   }
 
   return (
@@ -37,7 +44,7 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
             >
               TV Shows
             </h1>
-            <form class="flex items-center" onSubmit={handleSubmit}>
+            <form ref={form} class="flex items-center" onSubmit={handleSubmit}>
               <input
                 onChange={(event) => setsearchTerm(event.target.value)}
                 class="md:px-4 px-2 py-1 rounded-l-full md:w-full w-36 focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900 text-white"
