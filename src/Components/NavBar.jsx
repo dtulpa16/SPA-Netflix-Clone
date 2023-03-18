@@ -23,7 +23,7 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
           <h1 class="text-red-500 font-bold md:text-3xl text-lg">
             {window.innerWidth > 800 ? "MovieMania" : "MM"}
           </h1>
-          <div className="flex flex-row flex-wrap md:gap-8 gap-2 items-center">
+          <div className="flex flex-row flex-wrap md:gap-8 gap-3 items-center">
             <h1
               onClick={() => setActive("movie")}
               className={`${

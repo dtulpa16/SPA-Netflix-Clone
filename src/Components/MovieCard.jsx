@@ -7,6 +7,7 @@ import React, { useState } from "react";
  */
 export default function MovieCard({ singleMovie }) {
   const [hoverToggle, setHoverToggle] = useState(false);
+  // const [hoverToggle, setHoverToggle] = useState(false);
    return singleMovie.image?.url ? (
     <div
       onMouseEnter={() => setHoverToggle(true)}
