@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
+import LoadingSpinner from "../Components/LoadingSpinner";
 import MovieList from "../Components/MovieList";
 import { TypeContext } from "../Components/TypeContext";
 /**
@@ -10,10 +11,14 @@ import { TypeContext } from "../Components/TypeContext";
  * @returns {JSX.Element} - Rendered MoviePage component
  */
 export default function MoviePage({ searchTerm, toggle }) {
-  const { active} = useContext(TypeContext);
+  const [loading, setloading] = useState(false);
+  const { active } = useContext(TypeContext);
   const [movies, setmovies] = useState([]);
 
-  const fetchMedia = async (searchTerm = active === "movie" ? "Lord Of The Rings" : "The Office") => {
+  const fetchMedia = async (
+    searchTerm = active === "movie" ? "Lord Of The Rings" : "The Office"
+  ) => {
+    setloading(true);
     let response = await axios.get(
       `https://online-movie-database.p.rapidapi.com/title/v2/find?title=${searchTerm}&titleType=${
         active === "movie" ? "movie" : "tvSeries"
@@ -27,16 +32,21 @@ export default function MoviePage({ searchTerm, toggle }) {
     );
     console.log("Movie API response: ", response.data.results);
     setmovies(response.data.results);
+    setloading(false);
   };
 
   useEffect(() => {
     fetchMedia(searchTerm);
-  }, [toggle,active]);
+  }, [toggle, active]);
 
-  return (
+  return !loading ? (
     <div>
-      <h1 className="font-bold text-center md:text-2xl top-4 text-md cursor-pointer relative duration-100">{active === "movie" ? "Movies" : "TV Shows"}</h1>
+      <h1 className="font-bold text-center md:text-2xl top-4 text-md cursor-pointer relative duration-100">
+        {active === "movie" ? "Movies" : "TV Shows"}
+      </h1>
       <MovieList movies={movies} />
     </div>
+  ) : (
+    <LoadingSpinner />
   );
 }
