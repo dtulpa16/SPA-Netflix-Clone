@@ -11,12 +11,12 @@ export default function NavBar({setsearchTerm, setToggle, toggle}) {
   return (
     <div>
       <nav class="bg-black text-white">
-        <div class="container mx-auto flex justify-between items-center py-4">
-          <h1 class="text-red-500 font-bold text-3xl">MovieMania</h1>
+        <div class="container mx-auto flex justify-between items-center py-4 md:px-10 px-2">
+          <h1 class="text-red-500 font-bold md:text-3xl text-lg">MovieMania</h1>
           <form class="flex items-center" onSubmit={handleSubmit}>
             <input
             onChange={(event)=>setsearchTerm(event.target.value)}
-              class="px-4 py-1 rounded-l-full w-full focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-900 text-white"
+              class="md:px-4 px-2 py-1 rounded-l-full md:w-full w-40 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-900 text-white"
               type="text"
               placeholder="Search..."
             />
