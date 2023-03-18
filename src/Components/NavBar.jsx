@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import NavbarSearchButtonIcon from "./NavbarSearchButtonIcon";
 
 export default function NavBar({ setsearchTerm, setToggle, toggle }) {
+  const [active, setactive] = useState("movie");
   function handleSubmit(event) {
     event.preventDefault();
     setToggle(!toggle);
@@ -15,12 +16,25 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
             {window.innerWidth > 600 ? "MovieMania" : "MM"}
           </h1>
           <div className="flex flex-row flex-wrap md:gap-8 gap-2 items-center">
-            <h1 className="text-white font-bold md:text-xl text-xs cursor-pointer hover:text-red-500 relative duration-100">
+            <h1
+              onClick={() => setactive("movie")}
+              className={`${
+                active === "movie"
+                  ? "text-red-500 underline underline-offset-4 duration-100"
+                  : "text-white "
+              } font-bold md:text-lg text-xs cursor-pointer hover:text-red-500 relative duration-100`}
+            >
               Movies
             </h1>
-            <h1 className="text-white font-bold md:text-xl text-xs cursor-pointer hover:text-red-500 relative duration-100">
+            <h1
+              onClick={() => setactive("tv")}
+              className={`${
+                active === "tv"
+                  ? "text-red-500 underline underline-offset-4 duration-100"
+                  : "text-white "
+              } font-bold md:text-lg text-xs cursor-pointer hover:text-red-500 relative duration-100`}
+            >
               TV Shows
-             
             </h1>
             <form class="flex items-center" onSubmit={handleSubmit}>
               <input
