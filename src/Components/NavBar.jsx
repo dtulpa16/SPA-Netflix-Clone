@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import NavbarSearchButtonIcon from "./NavbarSearchButtonIcon";
+import { TypeContext } from "./TypeContext";
 
 export default function NavBar({ setsearchTerm, setToggle, toggle }) {
-  const [active, setactive] = useState("movie");
+  const {active,setActive} = useContext(TypeContext)
   function handleSubmit(event) {
     event.preventDefault();
     setToggle(!toggle);
@@ -17,7 +18,7 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
           </h1>
           <div className="flex flex-row flex-wrap md:gap-8 gap-2 items-center">
             <h1
-              onClick={() => setactive("movie")}
+              onClick={() => setActive("movie")}
               className={`${
                 active === "movie"
                   ? "text-red-500 underline underline-offset-4 duration-100"
@@ -27,7 +28,7 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
               Movies
             </h1>
             <h1
-              onClick={() => setactive("tv")}
+              onClick={() => setActive("tv")}
               className={`${
                 active === "tv"
                   ? "text-red-500 underline underline-offset-4 duration-100"
@@ -39,7 +40,7 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
             <form class="flex items-center" onSubmit={handleSubmit}>
               <input
                 onChange={(event) => setsearchTerm(event.target.value)}
-                class="md:px-4 px-2 py-1 rounded-l-full md:w-full w-36 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-900 text-white"
+                class="md:px-4 px-2 py-1 rounded-l-full md:w-full w-36 focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900 text-white"
                 type="text"
                 placeholder="Search..."
               />
