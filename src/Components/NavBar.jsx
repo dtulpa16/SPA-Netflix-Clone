@@ -11,10 +11,17 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
     <div>
       <nav class="bg-black text-white">
         <div class="container mx-auto flex justify-between items-center py-4 md:px-10 px-2">
-          <h1 class="text-red-500 font-bold md:text-3xl text-lg">{window.innerWidth > 600 ? "MovieMania" : "MM"}</h1>
+          <h1 class="text-red-500 font-bold md:text-3xl text-lg">
+            {window.innerWidth > 600 ? "MovieMania" : "MM"}
+          </h1>
           <div className="flex flex-row flex-wrap md:gap-8 gap-2 items-center">
-            <h1 class="text-white font-bold md:text-xl text-xs">Movies</h1>
-            <h1 class="text-white font-bold md:text-xl text-xs">TV Shows</h1>
+            <h1 className="text-white font-bold md:text-xl text-xs cursor-pointer hover:text-red-500 relative duration-100">
+              Movies
+            </h1>
+            <h1 className="text-white font-bold md:text-xl text-xs cursor-pointer hover:text-red-500 relative duration-100">
+              TV Shows
+             
+            </h1>
             <form class="flex items-center" onSubmit={handleSubmit}>
               <input
                 onChange={(event) => setsearchTerm(event.target.value)}
