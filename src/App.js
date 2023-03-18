@@ -15,7 +15,7 @@ function App() {
 
   return (
     <TypeContext.Provider value={contextValue}>
-      <div className="bg-[#141414] h-full text-white">
+      <div className="bg-[#141414] h-full min-h-screen text-white">
         <NavBar
           setsearchTerm={setsearchTerm}
           setToggle={setToggle}

@@ -1,13 +1,16 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import MovieList from "../Components/MovieList";
-
-export default function MoviePage({searchTerm, toggle}) {
+import { TypeContext } from "../Components/TypeContext";
+export default function MoviePage({ searchTerm, toggle }) {
+  const { active} = useContext(TypeContext);
   const [movies, setmovies] = useState([]);
 
-  const fetchMovies = async (searchTerm = "The Hobbit") => {
+  const fetchMedia = async (searchTerm = active === "movie" ? "Lord Of The Rings" : "The Office") => {
     let response = await axios.get(
-      `https://online-movie-database.p.rapidapi.com/title/v2/find?title=${searchTerm}`,
+      `https://online-movie-database.p.rapidapi.com/title/v2/find?title=${searchTerm}&titleType=${
+        active === "movie" ? "movie" : "tvSeries"
+      }`,
       {
         headers: {
           "X-RapidAPI-Key": process.env.REACT_APP_MOVIE_API_KEY,
@@ -20,12 +23,13 @@ export default function MoviePage({searchTerm, toggle}) {
   };
 
   useEffect(() => {
-    fetchMovies(searchTerm);
-  }, [toggle]);
+    fetchMedia(searchTerm);
+  }, [toggle,active]);
 
   return (
     <div>
-      <MovieList movies={movies}/>
+      <h1 className="font-bold text-center md:text-2xl top-4 text-md cursor-pointer relative duration-100">{active === "movie" ? "Movies" : "TV Shows"}</h1>
+      <MovieList movies={movies} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import NavbarSearchButtonIcon from "./NavbarSearchButtonIcon";
 import { TypeContext } from "./TypeContext";
 
@@ -14,7 +14,7 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
       <nav class="bg-black text-white">
         <div class="container mx-auto flex justify-between items-center py-4 md:px-10 px-2">
           <h1 class="text-red-500 font-bold md:text-3xl text-lg">
-            {window.innerWidth > 600 ? "MovieMania" : "MM"}
+            {window.innerWidth > 800 ? "MovieMania" : "MM"}
           </h1>
           <div className="flex flex-row flex-wrap md:gap-8 gap-2 items-center">
             <h1
