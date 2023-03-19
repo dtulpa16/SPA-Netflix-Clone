@@ -1,4 +1,4 @@
-# MovieMania
+# [MovieMania](https://playful-tarsier-997ef8.netlify.app/)
 
 MovieMania is a dynamic single-page React application inspired by Netflix, that enables users to search and discover movies and TV shows. The website is built using React and styled with Tailwind CSS, and uses the "Online Movie Database" API to fetch movie and TV show data.
 
