@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth, provider } from '../../firebaseConfig';
 
 const Login = () => {
+
   const signInWithGoogle = async () => {
+    debugger;
     try {
-      await auth.signInWithPopup(provider);
+      let response = await auth.signInWithPopup(provider);
+      debugger
     } catch (error) {
       console.error(error);
     }

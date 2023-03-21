@@ -3,6 +3,7 @@ import "./App.css";
 import NavBar from "./Components/NavBar";
 import MoviePage from "./Pages/MoviePage";
 import { TypeContext } from "./Components/TypeContext";
+import Login from "./Components/Authentication/Login";
 /**
  * The main component of the application that renders the navbar and movie page.
  * @component
@@ -20,12 +21,13 @@ function App() {
   return (
     <TypeContext.Provider value={contextValue}>
       <div className="bg-[#141414] h-full min-h-screen text-white">
-        <NavBar
+        <Login />
+        {/* <NavBar
           setsearchTerm={setsearchTerm}
           setToggle={setToggle}
           toggle={toggle}
         />
-        <MoviePage searchTerm={searchTerm} toggle={toggle} />
+        <MoviePage searchTerm={searchTerm} toggle={toggle} /> */}
       </div>
     </TypeContext.Provider>
   );
