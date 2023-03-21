@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth, provider } from '../firebaseConfig';
+import { auth, provider } from '../../firebaseConfig';
 
 const Login = () => {
   const signInWithGoogle = async () => {
