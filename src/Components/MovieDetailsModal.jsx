@@ -53,7 +53,7 @@ export default function MovieDetailsModal({
   const fetchTrailer = async (movie) => {
     try {
       const response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?q=${movie.title.title} trailer&key=${KEY}&part=snippet&type=video&maxResults=6`
+        `https://www.googleapis.com/youtube/v3/search?q=${movie.title.title} trailer&key=${process.env.REACT_APP_YOUTUBE_API_KEY}&part=snippet&type=video&maxResults=6`
       );
       debugger;
       setTrailerKey(response.data.items[0].id.videoId);
