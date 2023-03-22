@@ -6,6 +6,7 @@ import { TypeContext } from "./Components/TypeContext";
 import Login from "./Components/Authentication/Login";
 import { auth } from "./firebaseConfig";
 import Register from "./Components/Authentication/Register";
+import useAuth from "./Hooks/useAuth";
 /**
  * The main component of the application that renders the navbar and movie page.
  * @component
@@ -14,29 +15,16 @@ function App() {
   const [searchTerm, setsearchTerm] = useState();
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("movie");
-  const [user, setUser] = useState(null);
+  const { user } = useAuth();
   const [authDisplay, setAuthDisplay] = useState(null);
 
   const contextValue = {
     active,
     setActive,
     setAuthDisplay,
+    user
   };
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user);
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
   return (
     <TypeContext.Provider value={contextValue}>
       <div className="bg-[#141414] h-full min-h-screen text-white">

@@ -10,24 +10,9 @@ import { TypeContext } from "../TypeContext";
  * @param {function} setToggle - A function to cause the useEffect in Movie Page to re-run and fetch media based off of search term.
  */
 export default function NavBar({ setsearchTerm, setToggle, toggle }) {
-  const { active, setActive } = useContext(TypeContext);
+  const { active, setActive, user } = useContext(TypeContext);
   const form = useRef(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
   const signUpWithGoogle = async () => {
     try {
