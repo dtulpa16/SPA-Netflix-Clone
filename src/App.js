@@ -40,8 +40,8 @@ function App() {
   return (
     <TypeContext.Provider value={contextValue}>
       <div className="bg-[#141414] h-full min-h-screen text-white">
-        {/* <Login />
-        <Register/> */}
+        <Login />
+        {/* <Register/> */}
         <NavBar
           setsearchTerm={setsearchTerm}
           setToggle={setToggle}
