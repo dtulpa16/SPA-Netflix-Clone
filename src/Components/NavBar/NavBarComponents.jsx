@@ -1,4 +1,4 @@
-import NavbarSearchButtonIcon from "./NavbarSearchButtonIcon";
+import NavbarSearchButtonIcon from "../Icons/NavbarSearchButtonIcon";
 import { auth } from "../../firebaseConfig";
 import { useContext } from "react";
 import DefaultIcon from "../../assets/defaultuserimage.jpg";
@@ -38,8 +38,6 @@ export function UserAvatar({ user, toggleDropdown }) {
 }
 export function DropdownMenu({
   user,
-  signInWithGoogle,
-  signUpWithGoogle,
   toggleDropdown,
 }) {
   const { setAuthDisplay } = useContext(TypeContext);

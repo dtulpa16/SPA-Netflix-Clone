@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
-import LoadingSpinner from "../Components/LoadingSpinner";
-import MovieList from "../Components/MovieList";
+import LoadingSpinner from "../Components/Icons/LoadingSpinner";
+import MovieList from "../Components/Movie/MovieList";
 import { TypeContext } from "../Components/TypeContext";
 /**
  * Renders the main movie or TV show page.
