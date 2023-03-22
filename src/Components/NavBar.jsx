@@ -87,12 +87,12 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
             >
               <input
                 onChange={(event) => setsearchTerm(event.target.value)}
-                className="md:px-4 px-2 py-1 rounded-l-full md:w-full w-36 focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900 text-white"
+                className="md:px-4 px-2 py-1 rounded-l-full md:w-full w-16 focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900 text-white"
                 type="text"
                 placeholder="Search..."
               />
 
-              <button className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-r-full">
+              <button className="bg-red-500 hover:bg-red-600 md:px-4 md:py-2 pl-[.3rem] pr-[.3rem] h-[36px] rounded-r-full">
                 <NavbarSearchButtonIcon />
               </button>
             </form>
@@ -104,7 +104,7 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
                   "https://via.placeholder.com/40/000000/FFFFFF/?text=MM"
                 }
                 alt="User"
-                className="h-10 w-10 object-cover rounded-full cursor-pointer"
+                className="md:h-10 h8 md:w-10 w-8 object-cover rounded-full cursor-pointer"
               />
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
