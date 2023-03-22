@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import "./App.css";
-import NavBar from "./Components/NavBar";
+import NavBar from "./Components/NavBar/NavBar";
 import MoviePage from "./Pages/MoviePage";
 import { TypeContext } from "./Components/TypeContext";
 import Login from "./Components/Authentication/Login";
