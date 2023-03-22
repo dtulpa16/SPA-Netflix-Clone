@@ -1,7 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import LoadingSpinner from "./LoadingSpinner";
-import KEY from "../localkey"
 /**
  * MovieDetailsModal is a functional component that renders a modal
  * displaying movie details, including title, genres, ratings, and a trailer.
