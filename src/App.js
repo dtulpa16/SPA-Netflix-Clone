@@ -1,10 +1,10 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
 import MoviePage from "./Pages/MoviePage";
 import { TypeContext } from "./Components/TypeContext";
 import Login from "./Components/Authentication/Login";
-import { auth } from './firebaseConfig';
+import { auth } from "./firebaseConfig";
 import Register from "./Components/Authentication/Register";
 /**
  * The main component of the application that renders the navbar and movie page.
@@ -15,18 +15,18 @@ function App() {
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("movie");
   const [user, setUser] = useState(null);
+  const [authDisplay, setAuthDisplay] = useState(null);
 
   const contextValue = {
     active,
     setActive,
-    user
+    setAuthDisplay,
   };
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user)
+        console.log(user);
         setUser(user);
       } else {
         setUser(null);
@@ -40,8 +40,8 @@ function App() {
   return (
     <TypeContext.Provider value={contextValue}>
       <div className="bg-[#141414] h-full min-h-screen text-white">
-        <Login />
-        {/* <Register/> */}
+        {authDisplay === "login" && <Login />}
+        {authDisplay === "reg" && <Register />}
         <NavBar
           setsearchTerm={setsearchTerm}
           setToggle={setToggle}

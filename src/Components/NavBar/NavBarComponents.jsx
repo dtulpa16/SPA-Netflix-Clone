@@ -1,6 +1,9 @@
 import NavbarSearchButtonIcon from "./NavbarSearchButtonIcon";
 import { auth } from "../../firebaseConfig";
-import DefaultIcon from "../../assets/defaultuserimage.jpg"
+import { useContext } from "react";
+import DefaultIcon from "../../assets/defaultuserimage.jpg";
+import { TypeContext } from "../TypeContext";
+
 export function SearchBar({ setsearchTerm, toggle, setToggle, form }) {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,10 +30,7 @@ export function UserAvatar({ user, toggleDropdown }) {
   return (
     <img
       onClick={toggleDropdown}
-      src={
-        user?.photoURL ||
-        DefaultIcon
-      }
+      src={user?.photoURL || DefaultIcon}
       alt="User"
       className="md:h-10 h8 md:w-10 w-8 object-cover rounded-full cursor-pointer"
     />
@@ -42,21 +42,28 @@ export function DropdownMenu({
   signUpWithGoogle,
   toggleDropdown,
 }) {
+  const { setAuthDisplay } = useContext(TypeContext);
   return (
     <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
       {!user ? (
         <>
           <button
-            onClick={() => signInWithGoogle()}
+            onClick={() => {
+              setAuthDisplay("login");
+              toggleDropdown();
+            }}
             className="w-full py-2 px-4 hover:bg-gray-200 text-left"
           >
-            Sign in with Google
+            Login
           </button>
           <button
-            onClick={() => signUpWithGoogle()}
+            onClick={() => {
+              setAuthDisplay("reg");
+              toggleDropdown();
+            }}
             className="w-full py-2 px-4 hover:bg-gray-200 text-left"
           >
-            Sign up with Google
+            Sign up
           </button>
         </>
       ) : (

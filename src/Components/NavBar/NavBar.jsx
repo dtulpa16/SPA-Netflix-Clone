@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 
 import { auth, provider } from "../../firebaseConfig";
-import { SearchBar,UserAvatar,DropdownMenu } from "./NavBarComponents";
+import { SearchBar, UserAvatar, DropdownMenu } from "./NavBarComponents";
 import { TypeContext } from "../TypeContext";
 /**
  * A functional component that renders the application navbar.
@@ -10,7 +10,7 @@ import { TypeContext } from "../TypeContext";
  * @param {function} setToggle - A function to cause the useEffect in Movie Page to re-run and fetch media based off of search term.
  */
 export default function NavBar({ setsearchTerm, setToggle, toggle }) {
-    const { active, setActive } = useContext(TypeContext);
+  const { active, setActive } = useContext(TypeContext);
   const form = useRef(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [user, setUser] = useState(null);
@@ -59,7 +59,26 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
             {window.innerWidth > 800 ? "MovieMania" : "MM"}
           </h1>
           <div className="flex flex-row flex-wrap md:gap-8 gap-3 items-center">
-            {/* ... other nav items ... */}
+            <h1
+              onClick={() => setActive("movie")}
+              className={`${
+                active === "movie"
+                  ? "text-red-500 underline underline-offset-4 duration-100"
+                  : "text-white "
+              } font-bold md:text-lg text-xs cursor-pointer hover:text-red-500 relative duration-100`}
+            >
+              Movies
+            </h1>
+            <h1
+              onClick={() => setActive("tv")}
+              className={`${
+                active === "tv"
+                  ? "text-red-500 underline underline-offset-4 duration-100"
+                  : "text-white "
+              } font-bold md:text-lg text-xs cursor-pointer hover:text-red-500 relative duration-100`}
+            >
+              TV Shows
+            </h1>
             <SearchBar
               setsearchTerm={setsearchTerm}
               toggle={toggle}

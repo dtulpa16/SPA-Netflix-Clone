@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { auth, provider } from "../../firebaseConfig";
+import { TypeContext } from "../TypeContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setAuthDisplay } = useContext(TypeContext);
 
   const signInWithEmailAndPassword = async (e) => {
     e.preventDefault();
-
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      setAuthDisplay(null)
     } catch (error) {
       console.error(error);
     }
@@ -18,6 +20,7 @@ const Login = () => {
   const signInWithGoogle = async () => {
     try {
       await auth.signInWithPopup(provider);
+      setAuthDisplay(null)
     } catch (error) {
       console.error(error);
     }
@@ -27,7 +30,7 @@ const Login = () => {
     <div>
       <div
         className={`fixed top-0 left-0 h-full w-full bg-black opacity-50 z-10`}
-        // onClick={() => closeModal()}
+        onClick={() => setAuthDisplay(null)}
       ></div>
       <div className="flex items-center justify-center h-screen fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 min-w-[360px]">
         <div className="p-10 bg-white rounded shadow-md">
