@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+localKey.js
+.localKey.js
+/localKey.js
+.localKey.js/

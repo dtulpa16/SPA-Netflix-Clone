@@ -1,15 +1,35 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import LoadingSpinner from "./LoadingSpinner";
+import KEY from "../localkey"
+/**
+ * MovieDetailsModal is a functional component that renders a modal
+ * displaying movie details, including title, genres, ratings, and a trailer.
+ *
+ * @component
+ * @param {string} movieId - The movie ID used to fetch movie details and the trailer.
+ * @param {boolean} isModalOpen - A boolean to control the modal's visibility.
+ * @param {function} closeModal - A function to close the modal when invoked.
+ *
+ * @example
+ * <MovieDetailsModal
+ *   movieId="12345"
+ *   isModalOpen={true}
+ *   closeModal={() => setIsModalOpen(false)}
+ * />
+ */
 export default function MovieDetailsModal({
   movieId,
   isModalOpen,
   closeModal,
 }) {
   const [movie, setMovie] = useState();
+  const [trailerKey, setTrailerKey] = useState("");
+  const [videoToggle, setVideoToggle] = useState(false);
   useEffect(() => {
     fetchMovieDetails();
   }, [movieId]);
+
   const fetchMovieDetails = async () => {
     try {
       let response = await axios.get(
@@ -22,13 +42,29 @@ export default function MovieDetailsModal({
         }
       );
       console.log(response.data[movieId]);
+      let movie = response.data[movieId];
       setMovie(response.data[movieId]);
+      fetchTrailer(movie);
     } catch (er) {
       console.log(er);
     }
   };
+
+  const fetchTrailer = async (movie) => {
+    try {
+      const response = await axios.get(
+        `https://www.googleapis.com/youtube/v3/search?q=${movie.title.title} trailer&key=${KEY}&part=snippet&type=video&maxResults=6`
+      );
+      debugger;
+      setTrailerKey(response.data.items[0].id.videoId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    movie && (
+    movie &&
+    trailerKey && (
       <div>
         <div
           className={`fixed top-0 left-0 h-full bg-black opacity-50 z-10 ${
@@ -38,7 +74,7 @@ export default function MovieDetailsModal({
         ></div>
 
         <div
-          className={`fixed top-1/2 left-1/2 min-w-[350px]  transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-8 z-20 ${
+          className={`fixed top-1/2 left-1/2 min-w-[350px] transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-8 z-20 ${
             isModalOpen ? "block" : "hidden"
           }`}
         >
@@ -84,6 +120,27 @@ export default function MovieDetailsModal({
                   Click here to see reviews!
                 </a>
               </div>
+              {!videoToggle &&
+                <button
+                  onClick={() => setVideoToggle(!videoToggle)}
+                  className="bg-red-500 mt-4 p-2 rounded-md max-w-max hover:cursor-pointer hover:scale-[1.03] duration-75"
+                >
+                  Watch Trailer
+                </button>
+              }
+              {videoToggle && (
+                <div className="mt-4">
+                  <iframe
+                    title="Movie Trailer"
+                    width="70%"
+                    height="232"
+                    src={`https://www.youtube.com/embed/${trailerKey}`}
+                    frameBorder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
             </div>
           </div>
         </div>
