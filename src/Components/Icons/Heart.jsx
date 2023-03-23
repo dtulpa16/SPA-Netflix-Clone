@@ -4,7 +4,7 @@ function Heart({ filled }) {
       <svg
         className={`${
           filled ? 'text-red-500' : 'text-red-500 stroke-current'
-        } absolute top-2 right-2 w-6 h-6 z-10`}
+        } absolute top-2 right-2 w-8 h-8 z-10 overflow-visible`}
         viewBox="0 0 24 24"
         fill={`${filled ? 'currentColor' : 'none'}`}
         xmlns="http://www.w3.org/2000/svg"

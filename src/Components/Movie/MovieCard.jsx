@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
  * @param {Object} props.singleMovie - Single movie or TV show object
  * @returns {JSX.Element} - Rendered MovieCard component
  */
-export default function MovieCard({ singleMovie }) {
+export default function MovieCard({ singleMovie, favorites }) {
   const [hoverToggle, setHoverToggle] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [movieId, setMovieId] = useState();
@@ -42,7 +42,15 @@ export default function MovieCard({ singleMovie }) {
               {singleMovie.title}
             </h3>
             <div onClick={() => addToFavorites(singleMovie)}>
-              <Heart filled={true} />
+              <Heart
+                filled={
+                  favorites.includes(
+                    singleMovie.id.replace("/title/", "").replace("/", "")
+                  )
+                    ? true
+                    : false
+                }
+              />
             </div>
           </div>
         ) : null}
@@ -100,4 +108,3 @@ const addToFavorites = async (movieId) => {
     console.error("User is not authenticated");
   }
 };
-

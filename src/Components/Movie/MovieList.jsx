@@ -1,5 +1,6 @@
-import React from "react";
 import MovieCard from "./MovieCard";
+import React, { useContext} from "react";
+import { TypeContext } from "../TypeContext";
 /**
  * Renders a list of movies or TV shows.
  * @param {Object} props - Component props
@@ -7,10 +8,12 @@ import MovieCard from "./MovieCard";
  * @returns {JSX.Element} - Rendered MovieList component
  */
 export default function MovieList({ movies }) {
+  const { favorites } = useContext(TypeContext);
+
   return (
     <div className="flex flex-wrap gap-10 justify-center p-10">
       {movies.map((el) => (
-        <MovieCard singleMovie={el}/>
+        <MovieCard singleMovie={el} favorites={favorites}/>
       ))}
     </div>
   );
