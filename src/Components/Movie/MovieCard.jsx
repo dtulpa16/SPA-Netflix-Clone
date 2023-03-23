@@ -19,7 +19,7 @@ export default function MovieCard({ singleMovie, favorites }) {
     setMovieId(movieId.id.replace("/title/", "").replace("/", ""));
     openModal();
   };
-  return singleMovie.image?.url ? (
+  return singleMovie.image?.url && favorites? (
     <div>
       <div
         onMouseEnter={() => setHoverToggle(true)}

@@ -1,10 +1,10 @@
 import { auth, firestore, FieldValue } from "../firebaseConfig";
-import {useState,useEffect} from "react";
-
+import { useState, useEffect } from "react";
 
 export default function useFetchFavorites() {
-    const [favorites, setFavorites] = useState([]);
-    const fetchFavorites = async () => {
+  const [favorites, setFavorites] = useState([]);
+  const fetchFavorites = async () => {
+    if (auth.currentUser?.uid) {
       try {
         const favRef = firestore
           .collection("userfavorites")
@@ -21,10 +21,10 @@ export default function useFetchFavorites() {
       } catch (error) {
         console.error("Error getting document: ", error);
       }
-    };
-    useEffect(() => {
-      fetchFavorites();
-    },[auth.currentUser.uid]);
-    return { favorites };
+    }
+  };
+  useEffect(() => {
+    fetchFavorites();
+  }, [auth?.currentUser]);
+  return { favorites };
 }
-

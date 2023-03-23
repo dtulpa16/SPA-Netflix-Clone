@@ -69,6 +69,8 @@ export function DropdownMenu({
           onClick={() => {
             auth.signOut();
             toggleDropdown();
+            localStorage.clear();
+            window.location.reload()
           }}
           className="w-full py-2 px-4 hover:bg-gray-200 text-left"
         >
