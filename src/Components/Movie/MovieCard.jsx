@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Heart from "../Icons/Heart";
 import { auth, firestore, FieldValue } from "../../firebaseConfig";
 import MovieDetailsModal from "./MovieDetailsModal";
@@ -13,7 +13,6 @@ export default function MovieCard({ singleMovie }) {
   const [hoverToggle, setHoverToggle] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [movieId, setMovieId] = useState();
-
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const handleClick = (movieId) => {
@@ -88,7 +87,7 @@ const addToFavorites = async (movieId) => {
       console.error("Error adding movie to favorites: ", error);
     }
   } else {
-    toast.error('Please login to favorite a movie', {
+    toast.error("Please login to favorite a movie", {
       position: "top-right",
       autoClose: 2500,
       hideProgressBar: false,
@@ -97,7 +96,8 @@ const addToFavorites = async (movieId) => {
       draggable: true,
       progress: undefined,
       theme: "dark",
-      });
+    });
     console.error("User is not authenticated");
   }
 };
+

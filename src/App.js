@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register from "./Components/Authentication/Register";
 import useAuth from "./Hooks/useAuth";
+import useFetchFavorites from "./Hooks/useFetchFavorites";
 /**
  * The main component of the application that renders the navbar and movie page.
  * @component
@@ -16,6 +17,7 @@ function App() {
   const [searchTerm, setsearchTerm] = useState();
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("movie");
+  const {favorites} = useFetchFavorites()
   const { user } = useAuth();
   const [authDisplay, setAuthDisplay] = useState(null);
 
@@ -24,6 +26,7 @@ function App() {
     setActive,
     setAuthDisplay,
     user,
+    favorites
   };
 
   return (
