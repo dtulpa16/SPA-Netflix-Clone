@@ -8,12 +8,12 @@ import { TypeContext } from "../TypeContext";
  * @returns {JSX.Element} - Rendered MovieList component
  */
 export default function MovieList({ movies }) {
-  const { favorites } = useContext(TypeContext);
+  const { favorites, setFavoritesUpdated } = useContext(TypeContext);
 
   return (
     <div className="flex flex-wrap gap-10 justify-center p-10">
       {movies.map((el) => (
-        <MovieCard singleMovie={el} favorites={favorites}/>
+        <MovieCard singleMovie={el} favorites={favorites} setFavoritesUpdated={setFavoritesUpdated}/>
       ))}
     </div>
   );

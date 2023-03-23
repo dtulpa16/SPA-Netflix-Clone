@@ -17,7 +17,7 @@ function App() {
   const [searchTerm, setsearchTerm] = useState();
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("movie");
-  const {favorites} = useFetchFavorites()
+  const {favorites,setFavoritesUpdated} = useFetchFavorites()
   const { user } = useAuth();
   const [authDisplay, setAuthDisplay] = useState(null);
 
@@ -26,7 +26,8 @@ function App() {
     setActive,
     setAuthDisplay,
     user,
-    favorites
+    favorites,
+    setFavoritesUpdated
   };
 
   return (
@@ -39,7 +40,7 @@ function App() {
           setToggle={setToggle}
           toggle={toggle}
         />
-        <MoviePage searchTerm={searchTerm} toggle={toggle} />
+        <MoviePage searchTerm={searchTerm} toggle={toggle} favorites={favorites} />
       </div>
       <ToastContainer
         position="top-right"

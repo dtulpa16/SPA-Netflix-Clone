@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 export default function useFetchFavorites() {
   const [favorites, setFavorites] = useState([]);
+  const [favoritesUpdated, setFavoritesUpdated] = useState(false);
   const fetchFavorites = async () => {
     if (auth.currentUser?.uid) {
       try {
@@ -12,7 +13,7 @@ export default function useFetchFavorites() {
         const doc = await favRef.get();
         if (doc.exists) {
           const favs = doc.data().favorites;
-          debugger;
+           ;
           setFavorites(favs);
           console.log("Favorites:", favs);
         } else {
@@ -25,6 +26,6 @@ export default function useFetchFavorites() {
   };
   useEffect(() => {
     fetchFavorites();
-  }, [auth?.currentUser]);
-  return { favorites };
+  }, [auth?.currentUser,favoritesUpdated]);
+  return { favorites, setFavoritesUpdated };
 }

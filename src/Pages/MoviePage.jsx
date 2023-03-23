@@ -10,7 +10,7 @@ import { TypeContext } from "../Components/TypeContext";
  * @param {boolean} props.toggle - Boolean value indicating whether to toggle between movie and TV show
  * @returns {JSX.Element} - Rendered MoviePage component
  */
-export default function MoviePage({ searchTerm, toggle }) {
+export default function MoviePage({ searchTerm, toggle, favorites }) {
   const [loading, setloading] = useState(false);
   const { active } = useContext(TypeContext);
   const [movies, setmovies] = useState([]);
