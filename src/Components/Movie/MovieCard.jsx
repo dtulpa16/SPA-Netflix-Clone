@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Heart from "../Icons/Heart";
 import { auth, firestore, FieldValue } from "../../firebaseConfig";
 import MovieDetailsModal from "./MovieDetailsModal";
@@ -71,21 +71,30 @@ export default function MovieCard({
     </div>
   ) : null;
 }
-
+/**
+ * Handles adding and removing a movie from the user's favorites list in Firestore
+ * @param {Object} movieId - The movie ID to add or remove from favorites
+ * @param {Function} setIsFavorite - A state setter function to set the favorite status of the movie
+ * @param {Array} favorites - An array of the user's current favorite movie IDs
+ */
 const handleFavorite = async (
   movieId,
   setIsFavorite,
   favorites,
   setFavoritesUpdated
 ) => {
+  // Extract the movie ID from the movie object
   movieId = movieId.id.replace("/title/", "").replace("/", "");
 
+  // Check if the user is authenticated
   if (auth.currentUser) {
     const userRef = firestore
       .collection("userfavorites")
       .doc(auth.currentUser.uid);
+    // Check if the movie is already in the user's favorites list
     if (favorites.includes(movieId)) {
       try {
+        // Remove the movie from the user's favorites list in Firestore
         await userRef.update({
           favorites: FieldValue.arrayRemove(movieId),
         });
@@ -99,19 +108,22 @@ const handleFavorite = async (
           progress: undefined,
           theme: "dark",
         });
+        // Set the favorite status of the movie to false
         setIsFavorite(false);
-        setFavoritesUpdated(true)
+        setFavoritesUpdated(true);
       } catch (er) {
         console.log(er);
       }
     } else {
       try {
+        // Add the movie to the user's favorites list in Firestore
         await userRef.set(
           {
             favorites: FieldValue.arrayUnion(movieId),
           },
           { merge: true }
         );
+        // Display a success toast notification
         toast.success("Added To Favorites!", {
           position: "top-right",
           autoClose: 2500,
@@ -122,8 +134,10 @@ const handleFavorite = async (
           progress: undefined,
           theme: "dark",
         });
+        // Set the favorite status of the movie to true
         setIsFavorite(true);
-        setFavoritesUpdated(true)
+        // Trigger fetching of favorite movies to rerun
+        setFavoritesUpdated(true);
         console.log("Movie added to favorites");
       } catch (error) {
         console.error("Error adding movie to favorites: ", error);

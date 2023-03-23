@@ -65,18 +65,18 @@ export default function MovieDetailsModal({
     trailerKey && (
       <div>
         <div
-          className={`fixed top-0 left-0 h-full bg-black opacity-50 z-10 ${
+          className={`fixed top-0 left-0 h-full w-full bg-black opacity-50 z-20 ${
             isModalOpen ? "block" : "hidden"
           }`}
           onClick={() => closeModal()}
         ></div>
 
         <div
-          className={`fixed top-1/2 left-1/2 min-w-[350px] transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-8 z-20 ${
+          className={`fixed top-1/2 left-1/2 min-w-[360px] transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-8 z-20 overflow-y-auto max-h-[90vh] ${
             isModalOpen ? "block" : "hidden"
           }`}
         >
-          <div className="ease-in-out flex flex-col md:flex-row justify-between items-center mb-4">
+          <div className="ease-in-out flex flex-col md:flex-row justify-between items-center mb-4 ">
             <h1
               onClick={() => {
                 closeModal();
@@ -127,10 +127,11 @@ export default function MovieDetailsModal({
                 </button>
               }
               {videoToggle && (
-                <div className="mt-4">
+                <div className="mt-4 ">
                   <iframe
                     title="Movie Trailer"
-                    width="70%"
+   
+                    className="w-full md:w-[500px]"
                     height="232"
                     src={`https://www.youtube.com/embed/${trailerKey}`}
                     frameBorder="0"
