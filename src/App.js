@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import NavBar from "./Components/NavBar/NavBar";
 import MoviePage from "./Pages/MoviePage";
 import { TypeContext } from "./Components/TypeContext";
 import Login from "./Components/Authentication/Login";
-import { auth } from "./firebaseConfig";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Register from "./Components/Authentication/Register";
 import useAuth from "./Hooks/useAuth";
 /**
@@ -22,7 +23,7 @@ function App() {
     active,
     setActive,
     setAuthDisplay,
-    user
+    user,
   };
 
   return (
@@ -37,6 +38,18 @@ function App() {
         />
         <MoviePage searchTerm={searchTerm} toggle={toggle} />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </TypeContext.Provider>
   );
 }
