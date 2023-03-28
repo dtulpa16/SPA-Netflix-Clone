@@ -4,7 +4,14 @@ import { useContext } from "react";
 import DefaultIcon from "../../assets/defaultuserimage.jpg";
 import { TypeContext } from "../TypeContext";
 
+/**
+ * SearchBar component for handling media search functionality.
+ */
 export function SearchBar({ setsearchTerm, toggle, setToggle, form }) {
+   /**
+   * Handles search form submission.
+   * @param {Event} event - The form submission event.
+   */
   const handleSubmit = (event) => {
     event.preventDefault();
     setToggle(!toggle);
@@ -25,7 +32,9 @@ export function SearchBar({ setsearchTerm, toggle, setToggle, form }) {
     </form>
   );
 }
-
+/**
+ * UserAvatar component for displaying user Google avatar or a default image.
+ */
 export function UserAvatar({ user, toggleDropdown }) {
   return (
     <img
@@ -36,11 +45,14 @@ export function UserAvatar({ user, toggleDropdown }) {
     />
   );
 }
+/**
+ * DropdownMenu component for displaying a dropdown menu with user actions (Login,Logout,Register, & Favorites).
+ */
 export function DropdownMenu({
   user,
   toggleDropdown,
 }) {
-  const { setAuthDisplay } = useContext(TypeContext);
+  const { setAuthDisplay,setActive } = useContext(TypeContext);
   return (
     <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg">
       {!user ? (
@@ -65,6 +77,16 @@ export function DropdownMenu({
           </button>
         </>
       ) : (
+        <>
+        <button
+          onClick={() => {
+            toggleDropdown();
+            setActive("favorites")
+          }}
+          className="w-full py-2 px-4 hover:bg-gray-200 text-left"
+        >
+          Favorites
+        </button>
         <button
           onClick={() => {
             auth.signOut();
@@ -76,6 +98,7 @@ export function DropdownMenu({
         >
           Sign Out
         </button>
+        </>
       )}
     </div>
   );
