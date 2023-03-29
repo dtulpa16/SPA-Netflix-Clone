@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import { auth, provider } from "../../firebaseConfig";
 import { SearchBar, UserAvatar, DropdownMenu } from "./NavBarComponents";
@@ -13,7 +13,9 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
   const { active, setActive, user } = useContext(TypeContext);
   const form = useRef(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  /**
+   * Handles user sign up with Google authentication.
+   */
   const signUpWithGoogle = async () => {
     try {
       await auth.signInWithPopup(provider);
@@ -22,7 +24,9 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
       console.error(error);
     }
   };
-
+  /**
+   * Handles user sign in with Google authentication.
+   */
   const signInWithGoogle = async () => {
     try {
       await auth.signInWithPopup(provider);
@@ -31,7 +35,9 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
       console.error(error);
     }
   };
-
+ /**
+   * Toggles the state of the dropdown menu.
+   */
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
