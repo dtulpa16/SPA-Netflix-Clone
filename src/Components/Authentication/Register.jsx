@@ -9,10 +9,9 @@ const Register = () => {
 
   const registerWithEmailAndPassword = async (e) => {
     e.preventDefault();
-
     try {
       await auth.createUserWithEmailAndPassword(email, password);
-      setAuthDisplay(null)
+      setAuthDisplay(null);
     } catch (error) {
       console.error(error);
     }
@@ -21,7 +20,7 @@ const Register = () => {
   const signUpWithGoogle = async () => {
     try {
       await auth.signInWithPopup(provider);
-      setAuthDisplay(null)
+      setAuthDisplay(null);
     } catch (error) {
       console.error(error);
     }
