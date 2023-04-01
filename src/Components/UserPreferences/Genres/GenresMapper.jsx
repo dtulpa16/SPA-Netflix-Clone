@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import GenreCard from "./GenreCard";
 const genres = [
   "comedy",
@@ -29,10 +29,16 @@ const genres = [
   "western",
 ];
 export default function GenresMapper() {
+  const [selected, setSelected] = useState([]);
+  
+  const addToSelected = (genre) =>{
+   setSelected([...selected, genre])
+   console.log([...selected, genre])
+  }
   return (
     <div className="flex flex-wrap min-w-[320px] md:max-w-[450px] min-h-[400px] gap-2">
       {genres.map((el) => {
-        return <GenreCard genre={el} />;
+        return <GenreCard genre={el} addToSelected={addToSelected}/>;
       })}
     </div>
   );
