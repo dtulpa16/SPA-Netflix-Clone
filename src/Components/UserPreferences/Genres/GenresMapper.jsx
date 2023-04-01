@@ -36,7 +36,7 @@ export default function GenresMapper() {
    console.log([...selected, genre])
   }
   return (
-    <div className="flex flex-wrap min-w-[320px] md:max-w-[450px] min-h-[400px] gap-2">
+    <div className="flex flex-wrap min-w-[320px] md:max-w-[450px] min-h-[400px] gap-4 items-start p-2">
       {genres.map((el) => {
         return <GenreCard genre={el} addToSelected={addToSelected}/>;
       })}
