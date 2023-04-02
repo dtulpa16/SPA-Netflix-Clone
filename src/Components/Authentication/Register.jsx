@@ -15,6 +15,7 @@ const Register = () => {
     } catch (error) {
       console.error(error);
     }
+    setAuthDisplay("genreSelect")
   };
 
   const signUpWithGoogle = async () => {
@@ -24,6 +25,7 @@ const Register = () => {
     } catch (error) {
       console.error(error);
     }
+    setAuthDisplay("genreSelect")
   };
 
   return (

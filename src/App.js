@@ -41,12 +41,13 @@ function App() {
           setToggle={setToggle}
           toggle={toggle}
         />
-        <UserGenres />
-        {/* <MoviePage
+
+        {authDisplay === "genreSelect" && <UserGenres />}
+        <MoviePage
           searchTerm={searchTerm}
           toggle={toggle}
           favorites={favorites}
-        /> */}
+        />
       </div>
       <ToastContainer
         position="top-right"

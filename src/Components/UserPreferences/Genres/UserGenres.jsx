@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import GenresMapper from "./GenresMapper";
 
 export default function UserGenres() {
-  const [preferredGenres, setPreferredGenres] = useState([]);
   return (
     <div>
       <div
