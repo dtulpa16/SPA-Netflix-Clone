@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Register from "./Components/Authentication/Register";
 import useAuth from "./Hooks/useAuth";
 import useFetchFavorites from "./Hooks/useFetchFavorites";
+import UserGenres from "./Components/UserPreferences/Genres/UserGenres";
 /**
  * The main component of the application that renders the navbar and movie page.
  * @component
@@ -17,7 +18,7 @@ function App() {
   const [searchTerm, setsearchTerm] = useState();
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("movie");
-  const {favorites,setFavoritesUpdated} = useFetchFavorites()
+  const { favorites, setFavoritesUpdated } = useFetchFavorites();
   const { user } = useAuth();
   const [authDisplay, setAuthDisplay] = useState(null);
 
@@ -27,7 +28,7 @@ function App() {
     setAuthDisplay,
     user,
     favorites,
-    setFavoritesUpdated
+    setFavoritesUpdated,
   };
 
   return (
@@ -40,7 +41,13 @@ function App() {
           setToggle={setToggle}
           toggle={toggle}
         />
-        <MoviePage searchTerm={searchTerm} toggle={toggle} favorites={favorites} />
+
+        {authDisplay === "genreSelect" && <UserGenres />}
+        <MoviePage
+          searchTerm={searchTerm}
+          toggle={toggle}
+          favorites={favorites}
+        />
       </div>
       <ToastContainer
         position="top-right"

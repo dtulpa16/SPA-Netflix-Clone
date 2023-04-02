@@ -58,7 +58,7 @@ export default function MoviePage({ searchTerm, toggle }) {
   useEffect(() => {
     if (active !== "favorites") {
       fetchMedia(searchTerm);
-    } else if (active == "favorites") {
+    } else if (active === "favorites") {
       fetchFavorites();
     }
   }, [toggle, active]);
