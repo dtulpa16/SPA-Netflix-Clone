@@ -12,20 +12,20 @@ const Register = () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
       setAuthDisplay(null);
+      setAuthDisplay("genreSelect")
     } catch (error) {
       console.error(error);
     }
-    setAuthDisplay("genreSelect")
   };
 
   const signUpWithGoogle = async () => {
     try {
       await auth.signInWithPopup(provider);
       setAuthDisplay(null);
+      setAuthDisplay("genreSelect")
     } catch (error) {
       console.error(error);
     }
-    setAuthDisplay("genreSelect")
   };
 
   return (

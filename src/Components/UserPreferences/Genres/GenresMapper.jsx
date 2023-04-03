@@ -45,8 +45,6 @@ export default function GenresMapper() {
           const userRef = firestore
           .collection("userGenres")
           .doc(user.uid);
-          const genresRef = userRef.collection("genres");
-          const flattenedArray = selected.flatMap((item) => item);
           await userRef.set(
             {
               genres: selected,
