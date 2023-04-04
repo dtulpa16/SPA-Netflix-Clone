@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { auth, firestore } from "../firebaseConfig";
 import axios from "axios";
 import { useAuthState } from "react-firebase-hooks/auth";
-import pLimit from "p-limit";
+import MediaData from "../MediaData.js"
 
 // Custom hook to fetch media by genres
 export default function useFetchMediaByGenres() {
@@ -20,7 +20,6 @@ export default function useFetchMediaByGenres() {
         const doc = await genreRef.get();
         if (doc.exists) {
           const userGenres = doc.data().genres;
-          debugger;
           let mediaResponse = await fetchMediaByGenre(userGenres);
           setData(mediaResponse);
           console.log("genres:", userGenres);
@@ -50,44 +49,15 @@ const fetchMediaByGenre = async (genres) => {
         return obj;
       }, {});
     }
-    const rateLimiter = pLimit(1);
-
-    const response = await rateLimiter(() =>
-      axios.get(
-        `https://online-movie-database.p.rapidapi.com/title/v2/get-popular-movies-by-genre?genre=${genres.join(
-          ","
-        )}&limit=12`,
-        {
-          headers: {
-            "X-RapidAPI-Key": process.env.REACT_APP_MOVIE_API_KEY,
-            "X-RapidAPI-Host": "online-movie-database.p.rapidapi.com",
-          },
-        }
-      )
-    );
-    debugger;
-    const movieDetails = await Promise.all(
-      response.data.map(async (item) => {
-        let detailsResponse = await rateLimiter(() =>
-          axios.get(
-            `https://online-movie-database.p.rapidapi.com/title/get-details?tconst=${item
-              .replace("/title/", "")
-              .replace("/", "")}`,
-            {
-              headers: {
-                "X-RapidAPI-Key": process.env.REACT_APP_MOVIE_API_KEY,
-                "X-RapidAPI-Host": "online-movie-database.p.rapidapi.com",
-              },
-            }
-          )
-        );
-        return detailsResponse.data;
-      })
-    );
-    debugger;
-    movieDetails.forEach((item, index) => {
-      customResponse[genres[index]]?.push(item);
-    });
+    let genre = genres.map((item, index)=>{
+      const genreIndex = index % genres.length;
+      customResponse[genres[genreIndex]]?.push(MediaData[item]);
+    })
+    debugger
+    // movieDetails.forEach((item, index) => {
+    //   const genreIndex = index % genres.length;
+    //   customResponse[genres[genreIndex]]?.push(item);
+    // });
     debugger;
     return customResponse;
   } catch (er) {
