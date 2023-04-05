@@ -10,14 +10,13 @@ import Register from "./Components/Authentication/Register";
 import useAuth from "./Hooks/useAuth";
 import useFetchFavorites from "./Hooks/useFetchFavorites";
 import UserGenres from "./Components/UserPreferences/Genres/UserGenres";
-import useFetchMediaByGenres from "./Hooks/useFetchMediaByGenres";
+
 /**
  * The main component of the application that renders the navbar and movie page.
  * @component
  */
 function App() {
   const [searchTerm, setsearchTerm] = useState();
-  const { data, loading,error } = useFetchMediaByGenres();
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("movie");
   const { favorites, setFavoritesUpdated } = useFetchFavorites();
@@ -45,11 +44,11 @@ function App() {
         />
 
         {authDisplay === "genreSelect" && <UserGenres />}
-        {/* <MoviePage
+        <MoviePage
           searchTerm={searchTerm}
           toggle={toggle}
           favorites={favorites}
-        /> */}
+        />
       </div>
       <ToastContainer
         position="top-right"

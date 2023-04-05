@@ -63,6 +63,7 @@ export default function GenresMapper() {
   const addToSelected = (genre) => {
     setSelected([...selected, genre]);
   };
+
   return (
     <div className="flex flex-wrap min-w-[320px] md:max-w-[450px] min-h-[400px] gap-4 items-start p-2">
       {genres.map((el) => {

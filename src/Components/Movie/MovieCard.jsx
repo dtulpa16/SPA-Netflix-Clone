@@ -13,21 +13,23 @@ export default function MovieCard({
   singleMovie,
   favorites,
   setFavoritesUpdated,
+  genre = null
 }) {
   const [hoverToggle, setHoverToggle] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(
-    favorites.includes(singleMovie.id.replace("/title/", "").replace("/", ""))
+    favorites.includes(singleMovie?.id?.replace("/title/", "").replace("/", ""))
   );
   const [movieId, setMovieId] = useState();
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const handleClick = (movieId) => {
-    setMovieId(movieId.id.replace("/title/", "").replace("/", ""));
+    setMovieId(movieId?.id?.replace("/title/", "").replace("/", ""));
     openModal();
   };
   return singleMovie.image?.url && favorites ? (
     <div>
+    {console.log("Movie inside of coard: ", singleMovie)}
       <div
         onMouseEnter={() => setHoverToggle(true)}
         onMouseLeave={() => setHoverToggle(false)}

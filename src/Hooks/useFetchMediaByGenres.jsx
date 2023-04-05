@@ -42,25 +42,47 @@ export default function useFetchMediaByGenres() {
 // Function to fetch media by genre
 const fetchMediaByGenre = async (genres) => {
   try {
-    let customResponse = {};
-    if (genres.length > 0) {
-      customResponse = genres.reduce((obj, genre) => {
-        obj[genre] = [];
-        return obj;
-      }, {});
-    }
-    let genre = genres.map((item, index)=>{
-      const genreIndex = index % genres.length;
-      customResponse[genres[genreIndex]]?.push(MediaData[item]);
-    })
-    debugger
-    // movieDetails.forEach((item, index) => {
-    //   const genreIndex = index % genres.length;
-    //   customResponse[genres[genreIndex]]?.push(item);
-    // });
-    debugger;
+    let customResponse = [];
+    genres.forEach((genre) => {
+      const mediaData = MediaData[genre] || [];
+      const genreObj = {
+        [genre]: []
+      };
+      mediaData.forEach((movie) => {
+        genreObj[genre].push({
+          movie: movie
+        });
+      });
+      customResponse.push(genreObj);
+    });
+    
+    console.log(customResponse);
     return customResponse;
   } catch (er) {
     console.log("Error fetching media by genre: ", er);
   }
 };
+// const fetchMediaByGenre = async (genres) => {
+//   try {
+//     let customResponse = {};
+//     if (genres.length > 0) {
+//       customResponse = genres.reduce((obj, genre) => {
+//         obj[genre] = [];
+//         return obj;
+//       }, {});
+//     }
+//     let genre = genres.map((item, index)=>{
+//       const genreIndex = index % genres.length;
+//       customResponse[genres[genreIndex]]?.push(MediaData[item]);
+//     })
+//     debugger
+//     // movieDetails.forEach((item, index) => {
+//     //   const genreIndex = index % genres.length;
+//     //   customResponse[genres[genreIndex]]?.push(item);
+//     // });
+//     debugger;
+//     return customResponse;
+//   } catch (er) {
+//     console.log("Error fetching media by genre: ", er);
+//   }
+// };
