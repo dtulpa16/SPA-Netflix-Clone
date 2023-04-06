@@ -7,13 +7,14 @@ import { TypeContext } from "../TypeContext";
 /**
  * SearchBar component for handling media search functionality.
  */
-export function SearchBar({ setsearchTerm, toggle, setToggle, form }) {
+export function SearchBar({ setsearchTerm, toggle, setToggle, form,setActive }) {
    /**
    * Handles search form submission.
    * @param {Event} event - The form submission event.
    */
   const handleSubmit = (event) => {
     event.preventDefault();
+    setActive("search")
     setToggle(!toggle);
     form.current.value = "";
   };

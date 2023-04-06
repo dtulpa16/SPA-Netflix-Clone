@@ -29,11 +29,11 @@ export default function MovieCard({
   };
   return singleMovie.image?.url && favorites ? (
     <div>
-    {console.log("Movie inside of coard: ", singleMovie)}
+
       <div
         onMouseEnter={() => setHoverToggle(true)}
         onMouseLeave={() => setHoverToggle(false)}
-        class={`relative cursor-pointer trasition duration-200 ease-in-out hover:scale-105 min-h-[280px] bg-black `}
+        class={`relative cursor-pointer trasition duration-200 ease-in-out hover:scale-105 md:min-h-[280px] min-h-[180px] bg-black `}
       >
         {
           <img
@@ -41,8 +41,8 @@ export default function MovieCard({
               handleClick(singleMovie);
             }}
             src={singleMovie.image.url}
-            width="250"
-            className={`h-[350px] ${hoverToggle ? "opacity-50" : ""}`}
+          
+            className={`md:h-[350px] md:w-[250px] min-w-[140px] max-w-[140px] h-[180px] ${hoverToggle ? "opacity-50" : ""}`}
           />
         }
         <div
@@ -102,7 +102,7 @@ const handleFavorite = async (
         });
         toast.success("Removed from Favorites!", {
           position: "top-right",
-          autoClose: 2500,
+          autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -148,7 +148,7 @@ const handleFavorite = async (
   } else {
     toast.error("Please login to favorite a movie", {
       position: "top-right",
-      autoClose: 2500,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

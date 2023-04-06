@@ -35,7 +35,7 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
       console.error(error);
     }
   };
- /**
+  /**
    * Toggles the state of the dropdown menu.
    */
   const toggleDropdown = () => {
@@ -46,16 +46,23 @@ export default function NavBar({ setsearchTerm, setToggle, toggle }) {
     <div>
       <nav className="bg-black text-white">
         <div className="container mx-auto flex justify-between items-center py-4 md:px-10 px-2">
-          <h1 onClick={() => setActive("movie")} className="text-red-500 font-bold md:text-3xl text-lg cursor-pointer">
+          <h1
+            onClick={() => {
+              setActive("movie");
+              setToggle(!toggle);
+              setsearchTerm(null);
+            }}
+            className="text-red-500 font-bold md:text-3xl text-lg cursor-pointer"
+          >
             {window.innerWidth > 800 ? "MovieMania" : "MM"}
           </h1>
           <div className="flex flex-row flex-wrap md:gap-8 gap-3 items-center">
-
             <SearchBar
               setsearchTerm={setsearchTerm}
               toggle={toggle}
               setToggle={setToggle}
               form={form}
+              setActive={setActive}
             />
             <div className="relative">
               <UserAvatar user={user} toggleDropdown={toggleDropdown} />

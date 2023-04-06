@@ -18,14 +18,10 @@ export default function MoviePage({ searchTerm, toggle }) {
   const [movies, setmovies] = useState([]);
   const [media, setmedia] = useState(null);
   const { data, loading, error } = useFetchMediaByGenres();
-  const fetchMedia = async (
-    searchTerm = active === "movie" ? "Lord Of The Rings" : "The Office"
-  ) => {
+  const fetchMedia = async (searchTerm) => {
     setloading(true);
     let response = await axios.get(
-      `https://online-movie-database.p.rapidapi.com/title/v2/find?title=${searchTerm}&titleType=${
-        active === "movie" ? "movie" : "tvSeries"
-      }`,
+      `https://online-movie-database.p.rapidapi.com/title/v2/find?title=${searchTerm}`,
       {
         headers: {
           "X-RapidAPI-Key": process.env.REACT_APP_MOVIE_API_KEY,
@@ -34,7 +30,8 @@ export default function MoviePage({ searchTerm, toggle }) {
       }
     );
     console.log("Movie API response: ", response.data.results);
-    setmovies(response.data.results);
+    
+    setmedia(response.data.results);
     setloading(false);
   };
   const fetchFavorites = async () => {
@@ -60,28 +57,27 @@ export default function MoviePage({ searchTerm, toggle }) {
     setloading(false);
   };
   useEffect(() => {
-    
-
     if (active === "favorites") {
-      setmedia(null)
+      setmedia(null);
       fetchFavorites();
     } else if (active === "movie") {
       setmedia(data);
     }
-  }, [toggle, active, data]);
+  }, [active, data]);
+  useEffect(() => {
+    active === "search" && fetchMedia(searchTerm)
+  }, [toggle, searchTerm]);
 
-  return !isLoading && media ? (
+  return !isLoading && !loading && media ? (
     <div>
-      <h1 className="font-bold text-center md:text-2xl top-4 text-md cursor-pointer relative duration-100">
-        {active === "movie" ? "Movies" : null}
-        {active === "favorites" ? "Favorites" : null}
-      </h1>
       <MovieList
         movies={movies}
         favorites={favorites}
         setFavoritesUpdated={setFavoritesUpdated}
         media={media}
         data={media}
+        active={active}
+        search={searchTerm}
       />
     </div>
   ) : (

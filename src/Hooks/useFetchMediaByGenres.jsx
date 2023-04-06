@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { auth, firestore } from "../firebaseConfig";
 import axios from "axios";
 import { useAuthState } from "react-firebase-hooks/auth";
-import MediaData from "../MediaData.js"
+import MediaData from "../MediaData.js";
 
 // Custom hook to fetch media by genres
 export default function useFetchMediaByGenres() {
@@ -28,6 +28,10 @@ export default function useFetchMediaByGenres() {
           console.log("No such document!");
         }
       }
+      if (!user) {
+        let mediaResponse = await fetchMediaByGenre(["action","comedy","adventure","thriller","fantasy","animation","family", "history"]);
+        setData(mediaResponse);
+      }
     } catch (error) {
       console.error("Error saving selected genres: ", error);
     }
@@ -46,16 +50,16 @@ const fetchMediaByGenre = async (genres) => {
     genres.forEach((genre) => {
       const mediaData = MediaData[genre] || [];
       const genreObj = {
-        [genre]: []
+        [genre]: [],
       };
       mediaData.forEach((movie) => {
         genreObj[genre].push({
-          movie: movie
+          movie: movie,
         });
       });
       customResponse.push(genreObj);
     });
-    
+
     console.log(customResponse);
     return customResponse;
   } catch (er) {
