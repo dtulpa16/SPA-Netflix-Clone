@@ -87,7 +87,6 @@ export default function MovieList({
   console.log("MoviesByGenre", moviesByGenre);
   // Handler for pagination page clicks
   const handlePageClick = ({ selected: selectedPage }, genre, index) => {
-  
     let genreToUpdate = moviesByGenre.filter((el) => el.genre === genre);
     indexOfLastMovie = (selectedPage + 1) * moviesPerPage;
     indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
@@ -100,7 +99,7 @@ export default function MovieList({
             };
           })
         : null;
-  
+
     let finalArr = currentMoviesByGenre;
     finalArr[index] = newArr[0];
     setcurrentMoviesByGenre(finalArr);
@@ -172,7 +171,7 @@ export default function MovieList({
                   pageCount={Math.ceil(
                     moviesByGenre[index]?.movies.length / moviesPerPage
                   )}
-                  marginPagesDisplayed={2}
+                  marginPagesDisplayed={1}
                   pageRangeDisplayed={2}
                   onPageChange={(data) =>
                     handlePageClick(data, moviesByGenre[index]?.genre, index)
