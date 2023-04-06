@@ -13,25 +13,27 @@ export default function MovieCard({
   singleMovie,
   favorites,
   setFavoritesUpdated,
+  genre = null
 }) {
   const [hoverToggle, setHoverToggle] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(
-    favorites.includes(singleMovie.id.replace("/title/", "").replace("/", ""))
+    favorites.includes(singleMovie?.id?.replace("/title/", "").replace("/", ""))
   );
   const [movieId, setMovieId] = useState();
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const handleClick = (movieId) => {
-    setMovieId(movieId.id.replace("/title/", "").replace("/", ""));
+    setMovieId(movieId?.id?.replace("/title/", "").replace("/", ""));
     openModal();
   };
   return singleMovie.image?.url && favorites ? (
     <div>
+
       <div
         onMouseEnter={() => setHoverToggle(true)}
         onMouseLeave={() => setHoverToggle(false)}
-        class={`relative cursor-pointer trasition duration-200 ease-in-out hover:scale-105 min-h-[280px] bg-black `}
+        class={`relative cursor-pointer trasition duration-200 ease-in-out hover:scale-105 md:min-h-[280px] min-h-[180px] bg-black `}
       >
         {
           <img
@@ -39,8 +41,8 @@ export default function MovieCard({
               handleClick(singleMovie);
             }}
             src={singleMovie.image.url}
-            width="250"
-            className={`h-[350px] ${hoverToggle ? "opacity-50" : ""}`}
+          
+            className={`md:h-[350px] md:w-[250px] min-w-[140px] max-w-[140px] h-[180px] ${hoverToggle ? "opacity-50" : ""}`}
           />
         }
         <div
@@ -100,7 +102,7 @@ const handleFavorite = async (
         });
         toast.success("Removed from Favorites!", {
           position: "top-right",
-          autoClose: 2500,
+          autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -146,7 +148,7 @@ const handleFavorite = async (
   } else {
     toast.error("Please login to favorite a movie", {
       position: "top-right",
-      autoClose: 2500,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

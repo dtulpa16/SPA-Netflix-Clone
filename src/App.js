@@ -10,6 +10,7 @@ import Register from "./Components/Authentication/Register";
 import useAuth from "./Hooks/useAuth";
 import useFetchFavorites from "./Hooks/useFetchFavorites";
 import UserGenres from "./Components/UserPreferences/Genres/UserGenres";
+
 /**
  * The main component of the application that renders the navbar and movie page.
  * @component
@@ -51,7 +52,7 @@ function App() {
       </div>
       <ToastContainer
         position="top-right"
-        autoClose={2500}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
