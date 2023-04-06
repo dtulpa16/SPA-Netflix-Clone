@@ -59,10 +59,11 @@ export default function GenresMapper({ data }) {
       } catch (error) {
         console.error("Error saving selected genres: ", error);
       }
+      window.location.reload()
     }
   };
   const addToSelected = (genre) => {
-    debugger;
+  
     let updatedGenres;
     if (selected.includes(genre)) {
       updatedGenres = selected.filter((el) => el !== genre);

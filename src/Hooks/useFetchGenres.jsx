@@ -15,7 +15,7 @@ const [user] = useAuthState(auth);
       if (user) {
         const genreRef = firestore.collection("userGenres").doc(user.uid);
         const doc = await genreRef.get();
-        debugger
+   
         if (doc.exists) {
           const userGenres = doc.data().genres;
           setData(userGenres);
