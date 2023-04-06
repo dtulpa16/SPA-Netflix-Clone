@@ -42,7 +42,7 @@ export default function MovieCard({
             }}
             src={singleMovie.image.url}
           
-            className={`md:h-[350px] md:w-[250px] min-w-[140px] max-w-[140px] h-[180px] ${hoverToggle ? "opacity-50" : ""}`}
+            className={`md:min-h-[350px] md:min-w-[250px] min-w-[140px] max-w-[140px] h-[180px] ${hoverToggle ? "opacity-50" : ""}`}
           />
         }
         <div
