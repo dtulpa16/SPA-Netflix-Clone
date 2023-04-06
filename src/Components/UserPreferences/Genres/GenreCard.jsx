@@ -13,7 +13,7 @@ export default function GenreCard({ genre, addToSelected, selected }) {
       onClick={() => {
         addToSelected(genre);
         setActive(!active ? false : true);
-        setHover(!active ? false:true);
+        setHover(!hover);
       }}
     >
       {!hover && !active && !selected.includes(genre) ? (
