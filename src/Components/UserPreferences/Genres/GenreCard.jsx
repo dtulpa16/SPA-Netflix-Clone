@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function GenreCard({ genre, addToSelected }) {
+export default function GenreCard({ genre, addToSelected,selected }) {
   const [active, setActive] = useState(false);
   const [hover, setHover] = useState(false);
   return (
@@ -8,7 +8,7 @@ export default function GenreCard({ genre, addToSelected }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className={`${
-        active ? "bg-green-500" : "bg-zinc-300"
+        active || selected.includes(genre)  ? "bg-green-500" : "bg-zinc-300"
       }  rounded-md h-min flex flex-row gap-1 px-1 pr-2 hover:scale-105 hover:cursor-pointer transition-all duration-150 hover:bg-green-500 items-center`}
       onClick={() => {
         addToSelected(genre);
@@ -16,7 +16,7 @@ export default function GenreCard({ genre, addToSelected }) {
         setHover(!hover);
       }}
     >
-      {!hover && !active ? <AddIcon /> : <CheckIcon />}
+      {!hover && !active && !selected.includes(genre)   ? <AddIcon /> : <CheckIcon />}
 
       <h1 className="text-black text-lg font-semibold capitalize">
         {genre.replace("-", " ")}

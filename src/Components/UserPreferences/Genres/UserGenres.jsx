@@ -4,7 +4,7 @@ import useFetchGenres from "../../../Hooks/useFetchGenres";
 
 export default function UserGenres() {
   const {data,loading,error} = useFetchGenres()
-  return (
+  return data && (
     <div>
       <div
         className={`fixed top-0 left-0 h-full w-full bg-black opacity-50 z-10`}
@@ -14,7 +14,7 @@ export default function UserGenres() {
           <h1 className="mb-4 text-3xl font-bold text-black">
             Select your favorite genres
           </h1>
-          <GenresMapper/>
+          <GenresMapper data={data}/>
         </div>
       </div>
     </div>
