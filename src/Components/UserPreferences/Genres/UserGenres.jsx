@@ -1,7 +1,9 @@
 import React,{useState} from "react";
 import GenresMapper from "./GenresMapper";
+import useFetchGenres from "../../../Hooks/useFetchGenres";
 
 export default function UserGenres() {
+  const {data,loading,error} = useFetchGenres()
   return (
     <div>
       <div

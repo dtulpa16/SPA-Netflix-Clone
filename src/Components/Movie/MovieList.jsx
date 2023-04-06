@@ -111,7 +111,7 @@ export default function MovieList({
   return (
     currentMoviesByGenre &&
     currentMoviesByGenre?.length > 0 && (
-      <div className="flex flex-wrap gap-10 justify-center p-10">
+      <div className="flex flex-wrap gap-10 justify-center p-10 pt-16">
         {currentMoviesByGenre &&
           currentMoviesByGenre.map((movies, index) => (
             <div key={index}>
@@ -173,7 +173,7 @@ export default function MovieList({
                     moviesByGenre[index]?.movies.length / moviesPerPage
                   )}
                   marginPagesDisplayed={2}
-                  pageRangeDisplayed={3}
+                  pageRangeDisplayed={2}
                   onPageChange={(data) =>
                     handlePageClick(data, moviesByGenre[index]?.genre, index)
                   }

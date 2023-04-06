@@ -23,7 +23,7 @@ export function SearchBar({ setsearchTerm, toggle, setToggle, form,setActive }) 
     <form ref={form} className="flex items-center" onSubmit={handleSubmit}>
       <input
         onChange={(event) => setsearchTerm(event.target.value)}
-        className="md:px-4 px-2 py-1 rounded-l-full md:w-full w-16 focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900 text-white"
+        className="md:px-4 px-2 py-1 rounded-l-full md:w-full w-36 focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900 text-white"
         type="text"
         placeholder="Search..."
       />
@@ -87,6 +87,15 @@ export function DropdownMenu({
           className="w-full py-2 px-4 hover:bg-gray-200 text-left rounded-t-md"
         >
           Favorites
+        </button>
+        <button
+          onClick={() => {
+            toggleDropdown();
+            setAuthDisplay("genreSelect")
+          }}
+          className="w-full py-1 px-4 hover:bg-gray-200 text-left"
+        >
+          Preferences
         </button>
         <button
           onClick={() => {
