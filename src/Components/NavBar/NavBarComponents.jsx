@@ -63,7 +63,7 @@ export function DropdownMenu({
               setAuthDisplay("login");
               toggleDropdown();
             }}
-            className="w-full py-2 px-4 hover:bg-gray-200 text-left"
+            className="w-full py-2 px-4 hover:bg-gray-200 text-left rounded-t-md"
           >
             Login
           </button>
@@ -72,7 +72,7 @@ export function DropdownMenu({
               setAuthDisplay("reg");
               toggleDropdown();
             }}
-            className="w-full py-2 px-4 hover:bg-gray-200 text-left"
+            className="w-full py-2 px-4 hover:bg-gray-200 text-left rounded-b-md"
           >
             Sign up
           </button>
@@ -84,7 +84,7 @@ export function DropdownMenu({
             toggleDropdown();
             setActive("favorites")
           }}
-          className="w-full py-2 px-4 hover:bg-gray-200 text-left"
+          className="w-full py-2 px-4 hover:bg-gray-200 text-left rounded-t-md"
         >
           Favorites
         </button>
@@ -95,7 +95,7 @@ export function DropdownMenu({
             localStorage.clear();
             window.location.reload()
           }}
-          className="w-full py-2 px-4 hover:bg-gray-200 text-left"
+          className="w-full py-2 px-4 hover:bg-gray-200 text-left rounded-b-md"
         >
           Sign Out
         </button>
