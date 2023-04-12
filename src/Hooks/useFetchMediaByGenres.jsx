@@ -29,7 +29,7 @@ export default function useFetchMediaByGenres() {
         }
       }
       if (!user) {
-        let mediaResponse = await fetchMediaByGenre(["action","comedy","adventure","thriller","fantasy","animation","family", "history"]);
+        let mediaResponse = await fetchMediaByGenre(["action","comedy","thriller","fantasy","animation"]);
         setData(mediaResponse);
       }
     } catch (error) {
